@@ -7,6 +7,6 @@ To run this project, import the GuideFinder.war into your workspace.
 
 These two application has a common server, which is implemented inside the Web application.
 
-###### Application server: Apache Tomcat
+##### Application server: Apache Tomcat
 ### Database: MySQL
 ### Language: Java
