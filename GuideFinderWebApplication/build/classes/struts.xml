@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC  
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"  
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+    
+<struts>
+	<constant name="struts.objectFactory" value="spring"></constant>
+
+	<constant name="struts.devMode" value="true"></constant>
+	
+	<constant name="struts.custom.i18n.resources" value="message" /> 
+     
+    <constant name="struts.i18n.encoding" value="UTF-8"></constant>
+     
+    <!-- 上传过程中临时文件存放目录 -->
+    <constant name="struts.multipart.saveDir" value="./Documents"></constant>
+	
+    <package name="default" extends="json-default">  
+        
+        
+        <action name="Register" class="regAction">
+        	<result name="success">/index.jsp</result>
+        	<result name="error">/help.jsp</result>
+        
+        </action>
+        
+        <action name="Login" class="loginAction">
+        	<result name="success">/index.jsp</result>
+        	<result name="error">/help.jsp</result>
+        </action>
+        
+        <action name="GuideReg" class="GuideRegAction">
+          
+        	<!--interceptor-ref name="fileUpload">
+        		<param name="allowedTypes">image/bmp,image/png,image/gif,image/jpeg,image/jpg</param>
+        		<param name="maximumSize">102400</param>
+        	</interceptor-ref>
+        	<interceptor-ref name="defaultStack"></interceptor-ref-->
+        
+        	<result name="success">/guidedetail.jsp</result>
+        	<result name="error">/about.jsp</result>
+        	
+        </action>
+        <action name="searchRemind" class="searchRemindAction">
+        	
+        </action>
+        <action name="guideSelect" class="AjaxGuideSelectAction">
+        </action>
+        <action name="guideDetails" class="GuideDetailsAction"></action>
+        <action name="guideSearch" class="SearchGuideAction">
+        	<result name="success">/guides.jsp</result>
+        	<result name="error">/help.jsp</result>
+        </action>
+         <action name="processMessage" class="processMessage">
+			<result name="success">/chat.jsp</result>
+			<result name="error">/help.jsp</result>
+		</action>
+		
+		<action name="sendMessage" class="sendMessage">
+			<result name="success">/message.jsp</result>
+			<result name="error">/help.jsp</result>
+		</action>
+		
+		<action name="readMessage" class="readMessage">
+			<result name="success">/message.jsp</result>
+			<result name="error">/help.jsp</result>
+		</action>
+		
+		<action name="getMessage" class="getMessage">
+			<result name="success">/chat.jsp</result>
+			<result name="error">/help.jsp</result>
+		</action>
+		<action name="orderAdd" class="orderAddAction">
+			<result name="success">/order.jsp</result>
+			<result name="error">/help.jsp</result>
+		</action>
+		<action name="orderListShow" class="orderListAction"></action>
+		<action name="orderDelete" class="orderListAction" method="orderDelete">
+			<result name="success">/order.jsp</result>
+		</action>
+		
+		
+		<action name="photoAdd" class="guidePhotoUploadAction" method="upload">
+		
+			
+        	
+			<result name="success">/guidedetail.jsp</result>
+			<result name="error">/help.jsp</result>
+		</action>
+		
+		
+		<!-- Android Action -->
+		<action name="androidLogin" class="androidLoginAction" method="login">
+			  <result type="json">
+                
+                <param name="root">dataMap</param>
+                <param name="excludeNullProperties">true</param>
+            </result>
+            
+		
+		</action>
+		
+		<action name="androidSignup" class="androidLoginAction" method="register">
+			<result type="json">
+				<param name="root">dataMap</param>
+				<param name="excludeNullProperties">true</param>
+			</result>
+		</action>
+		
+		<action name="androidGuideSearch" class="androidGuideSearchAction" method="searchGuideList">
+			<result type="json">
+				<param name="root">dataMap</param>
+				<param name="excludeNullProperties">true</param>
+			</result>
+		</action>
+		<action name="androidGuideDetails" class="androidGuideSearchAction" method="searchGuideDetail">
+			<result type="json">
+				<param name="root">dataMap</param>
+				<param name="excludeNullProperties">true</param>
+			</result>
+		</action>
+		<action name="GPSupdate" class="GPSAction" method="storeGPS">
+			<result type="json">
+				<param name="root">dataMap</param>
+				<param name="excludeNullProperties">true</param>
+			</result>
+		</action>
+		<action name="GPSGet" class="GPSAction" method="getGPS">
+			<result type="json">
+				<param name="root">dataMap</param>
+				<param name="excludeNullProperties">true</param>
+			</result>
+		</action>
+		
+		<action name="androidOrderDetails" class="androidOrderAction" method="getOrder">
+			<result type="json">
+				<param name="root">dataMap</param>
+				<param name="excludeNullproperties">true</param>
+			</result>
+		</action>
+		
+		<action name="androidshowMessage" class="androidMessage" method="showMessage">
+			  <result type="json">
+                <param name="root">dataMap</param>
+                <param name="excludeNullProperties">true</param>
+            </result>
+		</action>
+		
+		<action name="androidsendMessage" class="androidMessage" method="sendMessage">
+			  <result type="json">
+                <param name="root">dataMap</param>
+                <param name="excludeNullProperties">true</param>
+            </result>
+		</action>
+		
+		<action name="androidgetMessage" class="androidMessage" method="getMessage">
+			  <result type="json">
+                <param name="root">dataMap</param>
+                <param name="excludeNullProperties">true</param>
+            </result>
+		</action>
+    </package>
+    
+    
+</struts>

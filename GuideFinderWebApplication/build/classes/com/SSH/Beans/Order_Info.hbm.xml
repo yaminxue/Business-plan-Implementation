@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC  
+                            "-//Hibernate/Hibernate Mapping DTD 3.0//EN"  
+                            "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping package="com.SSH.Beans">  
+    <class name="Order_Info" table="order">   
+        <id name="order_ID" column="order_ID">  
+            <generator class="native"></generator>  
+        </id>  
+        <property name="startTime" column="startTime" type="java.lang.String"
+        	not-null="true" length="45"/>
+        <property name="endTime" column="endTime" type="java.lang.String"
+        	not-null="true" length="45"/>
+        <property name="number" column="number" type="java.lang.Integer"
+        	not-null="true" />
+        <property name="city" column="city" type="java.lang.String"
+        	not-null="true" length="45"/>
+        <property name="comment" column="comment" type="java.lang.String"
+        	not-null="true" length="45"/>
+        <property name="traveler_ID" column="traveler_ID" type="java.lang.Integer"
+        	not-null="true" />
+        <property name="guide_ID" column="guide_ID" type="java.lang.Integer"
+        	not-null="true" />				
+    </class>  
+</hibernate-mapping> 

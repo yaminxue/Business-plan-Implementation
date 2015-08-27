@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    >
+
+                <RadioGroup
+                    android:id="@+id/main_tab_group"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="bottom"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp">
+
+                    <ImageButton
+                        android:id="@+id/homeImage"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/RadioButton_marginleft1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/world"
+                        android:checked="false" />
+
+
+                    <ImageButton
+                        android:id="@+id/orderImage"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/RadioButton_marginleft2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/order"
+                        android:checked="false" />
+
+                    <ImageButton
+                        android:id="@+id/chatImage"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/RadioButton_marginleft2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/message"
+                        android:checked="false" />
+
+                    <ImageButton
+                        android:id="@+id/locationImage"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/RadioButton_marginleft2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/location"
+                        android:checked="false" />
+
+                    <ImageButton
+                        android:id="@+id/contactImage"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/service"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/RadioButton_marginleft2"
+                        android:checked="false" />
+
+                </RadioGroup>
+
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/homeText"
+                    android:layout_gravity="center_vertical"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Home"
+                    android:textColor="@color/title_font_color"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/orderText"
+                    android:layout_gravity="center_vertical"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="30dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" Order"
+                    android:textColor="@color/title_font_color"
+                    android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/chatText"
+                        android:layout_gravity="center_vertical"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="25dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Message"
+                        android:textColor="@color/title_font_color"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/locationText"
+                        android:layout_gravity="center_vertical"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="20dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Location"
+                        android:textColor="@color/title_font_color"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/contactText"
+                        android:layout_gravity="center_vertical"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="20dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Service"
+                        android:textColor="@color/title_font_color"
+                        android:textSize="14sp" />
+                    </LinearLayout>
+
+
+</LinearLayout>

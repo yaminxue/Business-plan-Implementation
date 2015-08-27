@@ -1,0 +1,262 @@
+<!DOCTYPE div PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<!---start-header---->
+
+			<div class="header">
+			
+				<div class="wrap">
+				<!---start-logo---->
+				<div class="logo">
+					<a href="index.jsp"><img src="images/logo_transparent.png" title="logo" /></a>
+					<form class="input-group" id="search_form" style="width:230%;"  action="guideSearch" method="get">
+					<div class="col-md-5 col-sm-5 col-xs-5 col-lg-5" style="padding:0;">
+				        <input type="text" class="form-control input-lg" value="" name="kn" autocomplete="off" required="required" placeholder="Where do you want to go?" style="border-radius: 4px 0px 0px 4px;"></div> <div><button class="btn btn-primary input-lg" type="submit" style="border-radius: 0px 4px 4px 0;">
+                            
+                            Search
+                        </button></div>
+			        </form>
+				</div>
+				<!---End-logo---->
+				<!---start-top-nav---->
+				<div class="top-nav">
+					<ul>
+						<li ><a href="index.jsp">Home</a></li>
+						<li><a href="javascript:;" class="btn bt_cor" data-toggle="modal" 
+                data-target="#myModal">SignUp</a></li>
+						<li><a href="javascript:;" class="btn bt_cor" data-toggle="modal" 
+                data-target="#myModal1">Login</a></li>
+						<li ><a href="application.jsp">Guide Application</a></li>
+						<li id="myhome"><a href="guidedetail.jsp" >My HomePage</a></li>
+						<li ><a href="order.jsp">My Order</a></li>
+					</ul>
+				</div>
+				<div class="clear"> </div>
+				<!---End-top-nav---->
+		<!---Model---->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+       <!--submit file action-->
+	   <form action="Register">
+  <div class="modal-dialog" style="width:400px;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="text-center" style="margin:0;">Personal Info</h4>
+      </div>
+      <div class="row; modal-body" style="padding:15px 30px 0;">
+        <div class="row">
+          <p class="text-center">Email</p>
+        </div>
+        <div class="row" style="padding:0 15px;">
+          <p class="text-center">
+          	
+            <input type="email" class="form-control" placeholder="Please Input your email" style="height:40px;" name="email"><br>
+            
+          </p>
+        </div>
+        <div class="row">
+          <p class="text-center">Name</p>
+        </div>
+        <div class="row" style="padding:0 15px;">
+          <p class="text-center">
+          	
+            <input type="text" class="form-control" name="first_name" placeholder="Given Name" style="height:40px;" required="required">
+            <input type="text" class="form-control" name="last_name" placeholder="Surname" style="height:40px;margin-top:-3px;" required="required">
+          </p>
+        </div>
+        <div class="row">
+          <p class="text-center">Password</p>
+        </div>
+        <div class="row">
+          <p class="text-center" style="padding:0 15px;">
+            <input type="password" name="pwd" class="form-control" placeholder="Set Password" style="height:40px;" required="required">
+          </p>
+        </div>
+      </div>
+      <div class="modal-footer" style="border-top: 0;">
+        <p class="text-center">
+          <button type="submit" class="btn btn-info finsh_box" style="width:200px;">Complete</button>
+        </p>
+        </div>
+		</form>
+      </div>
+      </div>
+	  </div>
+	  
+	   <!---Model1---->
+	 <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+            <form action="Login" method="post">
+              <div class="modal-dialog" style="width:400px;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="text-center" style="margin:0;">Log In</h4>
+      </div>
+      <div class="row; modal-body" style="padding:15px 30px 0;">
+	          <div class="row">
+          <p class="text-center">Email</p>
+        </div>
+        <div class="row">
+                  <p style="margin:0;">
+                    <input type="text" class="form-control" placeholder="Email Address" name="email">
+                  </p>
+				  </div>
+				          <div class="row">
+          <p class="text-center">Password</p>
+        </div>
+				  <div class="row">
+                  <p style="margin:0;">
+                    <input type="password" class="form-control" placeholder="Input Password" name="pwd">
+                  </p>
+				  </div>
+              <input type="hidden" name="from" value="main">
+              </div>
+			  <div class="modal-footer" style="border-top: 0;">
+			  <p class="text-center">
+              <button type="submit" class="btn btn-info finsh_box " style="width:200px;">Submit</button>
+			  </p>
+			  </div>
+            </form>
+          </div>
+<script>
+		$(function
+	() {
+		//搜索框提示
+
+		$('[name="kn"]')
+				.typeahead(
+						{
+							'source' : [
+"Amsterdam",
+"Ireland",
+"Galway",
+"Cork",
+"Austria",
+"Edinburgh",
+"Barcelona",
+"Berlin",
+"Bristol",
+"Brighton",
+"Birmingham",
+"Belfast",
+"Paris",
+"Dublin",
+"Denmark",
+"Turin",
+"Russia",
+"Florence",
+"Frankfurt",
+"France",
+"Finland",
+"Granada",
+"Copenhagen",
+"Netherlands",
+"Kiev",
+"Czech Republic",
+"London",
+"Rotterdam",
+"Lyon",
+"Leicester",
+"Rome",
+"Leeds",
+"Marseille",
+"Moscow",
+"Munich",
+"Manchester",
+"Milan",
+"Madrid",
+"Southampton",
+"Naples",
+"Nice",
+"Oxford",
+"Norway",
+"Geneva",
+"Sweden",
+"Switzerland",
+"Zurich",
+"VALENCIA",
+"Ukraine",
+"Vienna",
+"Venice",
+"Spain",
+"Greece",
+"Italy",
+"Athens",
+"Istanbul",
+"Britain",  ],
+							'items' : 8,
+						})
+
+		//搜索框提示
+		$('[name="area"]')
+				.typeahead(
+						{
+							'source' : [
+"Amsterdam",
+"Ireland",
+"Galway",
+"Cork",
+"Austria",
+"Edinburgh",
+"Barcelona",
+"Berlin",
+"Bristol",
+"Brighton",
+"Birmingham",
+"Belfast",
+"Paris",
+"Dublin",
+"Denmark",
+"Turin",
+"Russia",
+"Florence",
+"Frankfurt",
+"France",
+"Finland",
+"Granada",
+"Copenhagen",
+"Netherlands",
+"Kiev",
+"Czech Republic",
+"London",
+"Rotterdam",
+"Lyon",
+"Leicester",
+"Rome",
+"Leeds",
+"Marseille",
+"Moscow",
+"Munich",
+"Manchester",
+"Milan",
+"Madrid",
+"Southampton",
+"Naples",
+"Nice",
+"Oxford",
+"Norway",
+"Geneva",
+"Sweden",
+"Switzerland",
+"Zurich",
+"VALENCIA",
+"Ukraine",
+"Vienna",
+"Venice",
+"Spain",
+"Greece",
+"Italy",
+"Athens",
+"Istanbul",
+"Britain",  ],
+							'items' : 8,
+						})
+
+	})
+</script>
+
+
+
+
+
+
+<!---End-header---->

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">GuideFinder</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="search_menu">Search</string>
+    <string name="your_trip_menu">Your Trips</string>
+    <string name="TextView_text">GuideFinder</string>
+
+    <string name="tel1">+353 123456780</string>
+    <string name="tel2">+353 123456781</string>
+    <string name="tel3">+353 123456782</string>
+    <string name="tel4">+353 123456783</string>
+
+    <string name="loginService_URL">http://10.0.0.7:8080/GuideFinder/androidLogin.action?</string>
+
+
+
+
+</resources>

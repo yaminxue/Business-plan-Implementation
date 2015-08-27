@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC  
+                            "-//Hibernate/Hibernate Mapping DTD 3.0//EN"  
+                            "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping package="com.SSH.Beans">  
+    <class name="Guide_Info" table="guide_info">  
+        <id name="guide_ID" column="guide_ID">  
+             <generator class="assigned"></generator>
+        </id>  
+        <property name="age" column="age" type="java.lang.Integer"  
+            not-null="false" ></property>  
+        <property name="gender" column="gender" type="java.lang.String"
+        	not-null="false" length="45"></property>
+        <property name="nation" column="nation" type="java.lang.String"
+        	not-null="false" length="45"></property>	
+        <property name="city" column="city" type="java.lang.String"
+        	not-null="false" length="45"></property>
+        <property name="occupation" column="occupation" type="java.lang.String"
+        	not-null="false" length="45"></property>
+        <property name="duration" column="duration" type="java.lang.String"
+        	not-null="false" length="45"></property>
+        <property name="tips" column="tips" type="java.lang.String"
+        	not-null="false" length="45"></property>
+        <property name="car" column="car" type="java.lang.String"
+        	not-null="false" length="45"></property>
+        <property name="cartype" column="cartype" type="java.lang.String"
+        	not-null="false" length="45"></property>
+        <property name="hometown" column="hometown" type="java.lang.String"
+        	not-null="false" length="45"></property>
+        <property name="exp" column="exp" type="java.lang.String"
+        	not-null="false" length="45"></property>	
+        <property name="language" column="language" type="java.lang.String"
+        	not-null="false" length="45"></property>
+        <property name="name" column="name" type="java.lang.String"
+        	not-null="false" length="45"></property>
+        <property name="headicon" column="headicon" type="java.lang.String"
+        	not-null="false" length="45"></property>					
+    </class>  
+</hibernate-mapping> 

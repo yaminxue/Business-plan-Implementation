@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xsi:schemaLocation="http://www.springframework.org/schema/beans  
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"> 
+<!-- Data Source -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<property name="driverClass">
+			<value>com.mysql.jdbc.Driver</value>
+		</property>
+		<property name="jdbcUrl">
+			<value>jdbc:mysql://localhost/findyourguide</value>
+		</property>
+		<property name="user">
+			<value>root</value>
+		</property>
+		<property name="password">
+			<value></value>
+		</property>
+		<property name="maxPoolSize">
+			<value>80</value>
+		</property>
+		<property name="minPoolSize">
+			<value>1</value>
+		</property>
+		<property name="initialPoolSize">
+			<value>1</value>
+		</property>
+		<property name="maxIdleTime">
+			<value>20</value>
+		</property>
+
+	</bean>
+	
+	<!-- Hibernate SessionFactory -->
+	<bean id="sessionFactory" 
+			class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref local="dataSource"/>
+		</property>
+		<property name="mappingResources">
+			<list>
+				<value>com/SSH/Beans/User.hbm.xml</value>
+				<value>com/SSH/Beans/Guide_Info.hbm.xml</value>
+				<value>com/SSH/Beans/Order.hbm.xml</value>
+				<value>com/SSH/Beans/GPS_Info.hbm.xml</value>
+				
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="show_sql">true</prop>
+				<prop key="hibernate.jdbc.batch_size">20</prop>
+			</props>
+		</property>
+	
+	</bean>
+	
+	<bean id="transactionManager"
+			class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory">
+		</property>
+	
+	</bean>
+	
+	<bean id="UserDao" class="com.HibernateImpl.UserDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory"/>
+		</property>
+	</bean>
+	
+	
+	<bean id="GuideDao" class="com.HibernateImpl.GuideDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory"/>
+		</property>
+	</bean>
+	<bean id="OrderDao" class="com.HibernateImpl.OrderDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory"/>
+		</property>
+	</bean>
+	<bean id="GPSDao" class="com.HibernateImpl.GPSDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory"></ref>
+		</property>
+	</bean>
+	<bean id="EncryptionUtil" class="com.Security.EncryptionUtil">
+	
+	</bean>
+	
+	<!-- Transaction Manager Proxy -->
+	<bean id="UserDAOProxy"
+        class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="transactionManager">
+            <ref bean="transactionManager" />
+        </property>
+        <property name="target">
+            <ref local="UserDao" />
+        </property>
+        <property name="transactionAttributes">
+            <props>
+                <prop key="insert*">PROPAGATION_REQUIRED</prop>
+                <prop key="*">PROPAGATION_REQUIRED,readOnly</prop>
+            </props>
+        </property>
+    </bean>
+    <bean id="GuideDAOProxy"
+        class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="transactionManager">
+            <ref bean="transactionManager" />
+        </property>
+        <property name="target">
+            <ref local="GuideDao" />
+        </property>
+        <property name="transactionAttributes">
+            <props>
+                <prop key="insert*">PROPAGATION_REQUIRED</prop>
+                <prop key="*">PROPAGATION_REQUIRED,readOnly</prop>
+            </props>
+        </property>
+    </bean>
+    <bean id="OrderDAOProxy"
+        class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="transactionManager">
+            <ref bean="transactionManager" />
+        </property>
+        <property name="target">
+            <ref local="OrderDao" />
+        </property>
+        <property name="transactionAttributes">
+            <props>
+                <prop key="insert*">PROPAGATION_REQUIRED</prop>
+                <prop key="*">PROPAGATION_REQUIRED,readOnly</prop>
+            </props>
+        </property>
+    </bean>
+     <bean id="GPSDAOProxy"
+        class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="transactionManager">
+            <ref bean="transactionManager" />
+        </property>
+        <property name="target">
+            <ref local="GPSDao" />
+        </property>
+        <property name="transactionAttributes">
+            <props>
+                <prop key="insert*">PROPAGATION_REQUIRED</prop>
+                <prop key="*">PROPAGATION_REQUIRED,readOnly</prop>
+            </props>
+        </property>
+    </bean>
+	
+	<!-- User Manager logic bean -->
+	<bean id="userManager" class="com.SSH.ServiceBeanImpls.UserManagerImpl">
+		<property name="Dao">
+			<ref bean="UserDao"/>
+		</property>
+	</bean>
+	<bean id="guideManager" class="com.SSH.ServiceBeanImpls.GuideManagerImpl">
+		<property name="Dao">
+			<ref bean="GuideDao"></ref>
+		</property>
+		
+	</bean>
+	<bean id="orderManager" class="com.SSH.ServiceBeanImpls.OrderManagerImpl">
+		<property name="Dao">
+			<ref bean="OrderDao"></ref>
+		</property>
+	</bean>
+	<bean id="GPSManager" class="com.SSH.ServiceBeanImpls.GPSManagerImpl">
+		<property name="Dao">
+			<ref bean="GPSDao"/>
+		</property>
+	</bean>
+	
+	<!-- User Manage Action -->
+	<bean id="regAction" class="com.StrutsAction.RegisterAction">
+		<property name="userManager">
+			<ref bean="userManager"/>
+		</property>
+		<property name="enUtil">
+			<ref bean="EncryptionUtil"/>
+		</property>
+	
+	</bean>
+	
+	<bean id="loginAction" class="com.StrutsAction.LoginAction">
+		<property name="userManager">
+			<ref bean="userManager"/>
+		</property>
+		<property name="enUtil">
+			<ref bean="EncryptionUtil"/>
+		</property>
+	</bean>
+	<!-- Guide Action Beans -->
+	<bean id="GuideRegAction" class="com.StrutsAction.GuideApplicationAction">
+		<property name="guideManager">
+			<ref bean="guideManager"/>
+		</property>
+		
+	</bean>
+	
+	<!-- Search Action beans -->
+	<bean id="searchRemindAction" class="com.StrutsAction.AjaxSearchReminder"></bean>
+	
+	<bean id="AjaxGuideSelectAction" class="com.StrutsAction.AjaxGuideSelector">
+		<property name="guideManager">
+			<ref bean="guideManager"/>
+		</property>
+	</bean>
+	
+	<bean id="GuideDetailsAction" class="com.StrutsAction.GuideDetailsAction">
+		<property name="guideManager">
+			<ref bean="guideManager"/>
+		</property>
+	</bean>
+	<bean id="SearchGuideAction" class="com.StrutsAction.GuideSearchAction">
+		<property name="guideManager">
+			<ref bean="guideManager"/>
+		</property>
+	</bean>
+	
+	<bean id="processMessage" class="com.StrutsAction.ProcessMessage">
+		<property name="userManager">
+			<ref bean="userManager"/>
+		</property>
+	</bean>
+	
+	<bean id="sendMessage" class="com.StrutsAction.SendMessage">
+		<property name="userManager">
+			<ref bean="userManager"/>
+		</property>
+	</bean>
+	
+	<bean id="readMessage" class="com.StrutsAction.ReadMessage">
+		<property name="userManager">
+			<ref bean="userManager"/>
+		</property>
+	</bean>
+	
+	<bean id="getMessage" class="com.StrutsAction.GetMessage">
+		<property name="userManager">
+			<ref bean="userManager"/>
+		</property>
+	</bean>
+	<bean id="orderAddAction" class="com.StrutsAction.OrderAddAction">
+		<property name="manager">
+			<ref bean="orderManager"/>
+		</property>
+	</bean>
+	<bean id="orderListAction" class="com.StrutsAction.OrderDetailAction">
+		<property name="manager">
+			<ref bean="orderManager"/>
+		</property>
+	</bean>
+	
+	<bean id="androidLoginAction" class="com.StrutsAction.Android_UserLoginAction">
+		<property name="manager">
+			<ref bean="userManager"/>
+		</property>
+	</bean>
+	<bean id="androidGuideSearchAction" class="com.StrutsAction.Android_GuideSearchAction">
+		<property name="manager">
+			<ref bean="guideManager"/>
+		</property>
+		
+	</bean>
+	<bean id="guidePhotoUploadAction" class="com.StrutsAction.GuidePhotsUploadAction">
+	
+	</bean>
+	<bean id="androidOrderAction" class="com.StrutsAction.Android_OrderAction">
+		<property name="manager">
+			<ref bean="orderManager"/>
+		</property>
+	</bean>
+	<bean id="androidMessage" class="com.StrutsAction.AndroidMessage">
+		<property name="manager">
+			<ref bean="userManager" />
+		</property>
+	</bean>
+	
+	<bean id="GPSAction" class="com.StrutsAction.GPS_Location_Action">
+		<property name="manager">
+			<ref bean="GPSManager"/>
+		</property>
+		<property name="orderManager">
+			<ref bean="orderManager"></ref>
+		</property>
+	</bean>
+	
+	
+</beans>
