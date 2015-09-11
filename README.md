@@ -12,3 +12,5 @@ These two application has a common server, which is implemented inside the Web a
 #### Application Server: Apache Tomcat
 #### Main Language : Java (Server Side), JSP, HTML, CSS, JavaScript, Ajax, jQuery (Client side)
 #### Database: MySQL
+
+Other Contributors: Yunyi Zhu, Chenhao Yu, Haonian Li
